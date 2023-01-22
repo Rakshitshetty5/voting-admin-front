@@ -51,9 +51,7 @@ const AddCandidate = ({ toggleShowForm }) => {
         for(let obj in state){
             reqObject[obj] = state[obj].value
         }
-        console.log(reqObject)
         const response = await customAxios.post('/addCandidate', reqObject)
-        console.log(response)
         if(response.data.status === 'success'){
             alert('Added Successfully')
         }else{
