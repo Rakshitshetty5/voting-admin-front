@@ -2,7 +2,6 @@ import React from 'react'
 import { Route, Routes } from "react-router-dom";
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-import Footer from './components/Footer';
 import GeneralSettings from './components/GeneralSettings';
 import Candidate from './components/Candidate';
 import VoterVerfication from './components/VoterVerfication';
