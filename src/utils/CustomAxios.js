@@ -1,5 +1,6 @@
 import axios from "axios";
 import store from "../redux/store";
+import { signOut } from '../redux/auth/reducer'
 
 const customAxios = axios.create({
   baseURL: "http://localhost:4000/admin",
@@ -24,6 +25,8 @@ customAxios.interceptors.response.use(
   (err) => {
     if (err.code == "ECONNABORTED") {
       alert(err.message);
+    }else if(err.response.status === 403) {
+      store.dispatch(signOut())
     }
     return Promise.reject(err);
   }
