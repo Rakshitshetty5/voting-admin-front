@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import PageContainer from './PageContainer'
 import DataTable from 'react-data-table-component';
-import { ethers } from 'ethers';
 import ElectionAbi from '../utils/SmartContract/ElectionContract.json'
 import { ElectionContractAddress } from '../utils/config'
 import customAxios from '../utils/CustomAxios'
+const ethers = require("ethers")
 
 const columns = [
   {
