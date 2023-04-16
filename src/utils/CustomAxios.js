@@ -3,7 +3,7 @@ import store from "../redux/store";
 import { signOut } from '../redux/auth/reducer'
 
 const customAxios = axios.create({
-  baseURL: "http://localhost:4000/admin",
+  baseURL: "https://eight-banks-float-106-195-4-207.loca.lt/admin",
   timeout: process.env.REACT_APP_ENV == "development" ? 2000*60 : 1000*60,
 });
 
