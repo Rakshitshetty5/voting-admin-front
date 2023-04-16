@@ -3,6 +3,7 @@ import PageContainer from './PageContainer'
 import DataTable from 'react-data-table-component';
 import ElectionAbi from '../utils/SmartContract/ElectionContract.json'
 import { ElectionContractAddress } from '../utils/config'
+import { ReactComponent as Loader } from '../assets/Loader.svg'
 import customAxios from '../utils/CustomAxios'
 const ethers = require("ethers")
 
@@ -27,6 +28,18 @@ const columns = [
 
 const VoterVerfication = () => {
   const [state, setState] = useState([])
+  const [totalRows, setTotalRows] = useState();
+  const [perPage, setPerPage] = useState(10);
+  const [pageNo, setPageNo] = useState(1);
+  const [isFetching, setIsFetching] = useState(false);
+
+  const handlePageChange = (page) => {
+    setPageNo(page);
+  };
+
+  const handlePerRowsChange = (newPerPage, page) => {
+    setPerPage(newPerPage);
+  };
 
   const verifyUser = async (voter_id, verification_id, wallet_address) => {
     const { ethereum } = window
@@ -69,10 +82,14 @@ const VoterVerfication = () => {
 
     useEffect(() => {
       (async () => {
+        setIsFetching(true)
         const response = await customAxios.get('/getPendingVerifications')
         setState(response.data.data.pendingRequests)
+        setIsFetching(false)
       })()
     }, [])
+
+
 
     return (
       <PageContainer>
@@ -83,6 +100,11 @@ const VoterVerfication = () => {
               columns={columns}
               data={Data}
               pagination
+              paginationServer
+              progressComponent={<Loader />}
+              progressPending={isFetching}
+              onChangeRowsPerPage={handlePerRowsChange}
+              onChangePage={handlePageChange}
               striped
               persistTableHead
             />

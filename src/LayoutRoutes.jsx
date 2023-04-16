@@ -14,7 +14,6 @@ const LayoutRoutes = () => {
         <div className='flex-1'>
             <Header />
             <Routes>
-                <Route path="/" element={<Home />}/>
                 <Route path="/general" element={<GeneralSettings />}/>
                 <Route path="/candidates" element={<Candidate />}/>
                 <Route path="/verification" element={<VoterVerfication />}/>
